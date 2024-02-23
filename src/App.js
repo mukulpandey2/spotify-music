@@ -1,56 +1,71 @@
-
-import { useEffect, useState } from 'react';
-import './App.css';
-import Login from './pages/Login';
-import { getToken } from './pages/Spotify';
-import SpotifyWebApi from 'spotify-web-api-js';
+import React, { useEffect, useState } from "react";
+import SpotifyWebApi from "spotify-web-api-js";
+import { useStateValue } from "./StateProvider";
 import Player from './pages/Player';
-import { useStateContextValue } from './StateProvider';
+import { getTokenFromResponse } from "./pages/Spotify"
+import Login from "./pages/Login";
 
 const spotify = new SpotifyWebApi();
 
-// console.log(spotify, "spotifypreview")
-
 function App() {
-  const [token, setToken] = useState(null);
+  // const [token, setToken] = useState(null)
+  const [{ token }, dispatch] =useStateValue();
 
-  const [{user}, dispatch] = useStateContextValue();
-  
+  useEffect(() => {
+   
+    const hash = getTokenFromResponse();
+    window.location.hash = "";
+   let _token = hash.access_token
+    if (_token) {
+      dispatch({
+        type:"SET_TOKEN",
+        token: _token
+      })
+      // setToken(_token)
+      spotify.setAccessToken(_token);
 
+     spotify.getUserPlaylists().then((playlists) =>{
+        dispatch({
+          type: "SET_PLAYLISTS",
+         playlists: playlists,
+        });
+     })
+     spotify.getPlaylist('37i9dQZEVXcXsRVMIJ32OX').then((response) => {
+      dispatch({
+        type:"SET_DISCOVER_WEEKLY",
+        discover_weekly:response
+      })
+     })
+     spotify.getMyTopArtists().then((response) =>
+     dispatch({
+       type: "SET_TOP_ARTISTS",
+       top_artists: response,
+     })
+   );
 
-
-  useEffect(() =>{
-    
-    const hash = getToken();
-    // window.location.hash="";
-    const _token = hash.access_token;
-
-    setToken(_token)
-    if(_token){
-      spotify.setAccessToken(token)
-
+   dispatch({
+     type: "SET_SPOTIFY",
+     spotify: spotify,
+   });
       spotify.getMe().then((user) => {
-        console.log("user" , user)
-        // dispatch({
-        //   type: "SET_USER",
-        //   user: user,
-        // });
+        dispatch({
+          type: "SET_USER",
+         user: user,
+        });
       });
       
-    }
 
-    // console.log(token)
-  } ,[])
-  
+    }
+  }, []);
+  // console.log("user" , user)
+  // console.log("token" , token)
+
+
   return (
-    <div>
-      {
-        token ? <Player/>: <Login/>    
-      
-        
-      }   
-     
-      
+    <div className="app">
+     {
+      token ? <Player spotify={spotify}/> : <Login/>
+     }
     </div>
   );
 }

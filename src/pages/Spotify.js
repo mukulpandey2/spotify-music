@@ -8,20 +8,16 @@ const Scope = [
   "user-read-recently-played",
   "user-modify-playback-state",
 ];
-export const getToken = () =>{
+export const getTokenFromResponse = () => {
   return window.location.hash
-  .substring(1)
-  .split("&")
-  .reduce((initial, item) => {
-    var parts = item.split("=");
-    initial[parts[0]] = decodeURIComponent(parts[1]);
+    .substring(1)
+    .split("&")
+    .reduce((initial, item) => {
+      var parts = item.split("=");
+      initial[parts[0]] = decodeURIComponent(parts[1]);
 
-    return initial;
-  }, {});  
+      return initial;
+    }, {});
 };
 
-
-export const getUrl = `${authEndPoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${Scope.join(
-  "%20"
-)}&response_type=token&show_dialog=true`;
-
+export const accessUrl = `${authEndPoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${Scope.join("%20")}&response_type=token&show_dialog=true`;
