@@ -11,7 +11,7 @@ function Player({spotify}) {
       <div className='w-[20%] text-white  bg-black'>
       <Sidebar />
       </div>
-      <div className='w-[80%] h-[88vh] text-white bg-gradient-to-t from-gray-900 to-gray-500 overflow-y-scroll'>
+      <div className='w-[80%] h-[88vh] text-white bg-gradient-to-t from-black to-gray-500 overflow-y-scroll'>
       <Body spotify={spotify}/>
       </div>
     </div>

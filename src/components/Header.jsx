@@ -6,8 +6,9 @@ import { useStateValue } from '../StateProvider';
 const Header = () => {
     const [ {user} , dispatch] = useStateValue();
   return (
-        <div>
-            <div className='px-4 pt-2 flex items-center justify-between'>
+        <div className=' relative'>
+            <div className='fixed top-0 right-0 left-[20vw] px-4 pt-2 flex items-center justify-between'>
+               
                 <div className="search-bar flex text-black items-center gap-2 px-5 bg-white py-3  w-[300px] rounded-full">
                 <IoSearch  size={20}/>
                 <input type="text" placeholder='What do you want to play? ' className='outline-none w-[100%]' />

@@ -6,6 +6,7 @@ export const initialState = {
   top_artists: null,
   playing: false,
   item: null,
+  token:'',
   // token:'BQDjLk0LVzSta5pGUV75Vz3jaTDq5BEcB3Ao1ej1RDqZpn9Np4E6Idld8MuHMBAqP8hfFa0zLJIjTs4Kg592LEozl3-KLc1ORa09DfNxh-Fs2HiDGAo3WgzT366dbv8ETyy10sA_gHlLfQMFmKhRt25PjexORVN-xThmqjzzYOoH9jSgcpuKmitCUBD3rWoDmpwpW2YAFBzU273yAypI',
 };
 

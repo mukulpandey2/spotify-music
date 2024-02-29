@@ -1,8 +1,8 @@
 import React ,{useEffect} from 'react'
 import { IoIosShuffle } from "react-icons/io";
 import { MdOutlineSkipPrevious } from "react-icons/md";
-import { IoPlayCircleOutline } from "react-icons/io5";
-import { IoPauseCircleOutline } from "react-icons/io5";
+import {  IoPlayCircleSharp  } from "react-icons/io5";
+import {  IoPauseCircleSharp  } from "react-icons/io5";
 import { MdOutlineSkipNext } from "react-icons/md";
 import { IoRepeat } from "react-icons/io5";
 import { CiVolumeHigh } from "react-icons/ci";
@@ -14,7 +14,7 @@ const Footer = ({spotify}) => {
 
     useEffect(() => {
     spotify.getMyCurrentPlaybackState().then((r) => {
-      console.log(r);
+      console.log(r,"roifj");
       dispatch({
         type: "SET_PLAYING",
         playing: r.is_playing,
@@ -46,14 +46,17 @@ const Footer = ({spotify}) => {
   const skipNext = () => {
     spotify.skipToNext();
     spotify.getMyCurrentPlayingTrack().then((r) => {
+      
       dispatch({
         type: "SET_ITEM",
         item: r.item,
+        
       });
       dispatch({
         type: "SET_PLAYING",
         playing: true,
       });
+     
     });
   };
 
@@ -68,33 +71,42 @@ const Footer = ({spotify}) => {
         type: "SET_PLAYING",
         playing: true,
       });
+      
     });
   };
-
   return (
-      <div className="h-[100%] footer flex items-center justify-between px-2">
+      <div className="h-[100%] footer flex items-center justify-between px-2 row">
         <div className="footer-left flex items-center">
         <div className="player-img ">
-        <img src={item?.album.images[0].url} alt=""  width={50} height={80}/> 
+        <img src={item?.album.images[0].url} alt={item?.name}  width={60} height={50}/> 
           
-               </div>
+         </div>
+         {item ? (  
             <div className="songDesc text-[14px] ps-3">
               <p className='font-bold'>{item?.name}</p>
-              <p className='text-gray-400'>Snoop Dogg</p>
+              <div className='text-gray-500'>{item?.artists.map((artist) => artist.name).join(", ")}</div>
             </div>
+        ) : (
+          <div className="songDesc text-[14px] ps-3">
+              <p className='font-bold'>No song playing</p>
+              <div>No artists</div>
+            </div>
+        )}
         </div>
+        <div>
+       
         <div className="footer-center flex items-center gap-4 text-[30px] text-gray-400 ">
           <IoIosShuffle className=" cursor-pointer hover:text-white" />
           <MdOutlineSkipPrevious className=" cursor-pointer hover:text-white" onClick={skipNext}/>
           {playing ? (
-          <IoPauseCircleOutline
+          < IoPauseCircleSharp 
             onClick={handlePlayPause}
-            className=" cursor-pointer hover:text-green-500" size={40}
+            className=" cursor-pointer text-white" size={40}
           />
         ) : (
-          <IoPlayCircleOutline
+          < IoPlayCircleSharp 
             onClick={handlePlayPause}
-            className=" cursor-pointer hover:text-green-500" size={40}
+            className=" cursor-pointer text-white" size={40}
           />
         )}
          
@@ -102,9 +114,10 @@ const Footer = ({spotify}) => {
           <IoRepeat className=" cursor-pointer hover:text-white" />
 
         </div>
-        <div className="footer-right flex">
-           <CiVolumeHigh size={20} />
-           <input type="range" name="" id="" min={0}  max={100} />
+        </div>
+        <div className="footer-right flex items-center gap-2">
+           <CiVolumeHigh size={25} />
+           <input type="range" name="" id="ValumeSlider"  min={0}  max={100} />
         </div>
       </div>
   )
