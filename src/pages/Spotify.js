@@ -1,6 +1,6 @@
 export const authEndPoint = "https://accounts.spotify.com/authorize";
 const clientId = "f11795ec6db14d5cae5b28250386caea";
-const redirectUri = "http://localhost:3000/";
+const redirectUri = "http://spotifymusiclone.netlify.app";
 const Scope = [
   "user-read-playback-state",
   "user-read-currently-playing",
