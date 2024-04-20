@@ -10,7 +10,7 @@ import { useStateValue } from '../StateProvider';
 
 const Footer = ({spotify}) => {
 
-  const [{ token, item, playing }, dispatch] = useStateValue();
+  const [{item, playing }, dispatch] = useStateValue();
 
     useEffect(() => {
     spotify.getMyCurrentPlaybackState().then((r) => {
@@ -25,7 +25,7 @@ const Footer = ({spotify}) => {
         item: r.item,
       });
     });
-  }, [spotify]);
+  }, [spotify,dispatch]);
 
   const handlePlayPause = () => {
     if (playing) {

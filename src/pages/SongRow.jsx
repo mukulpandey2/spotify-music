@@ -16,7 +16,7 @@ function SongRow( {track , index, playSong} ) {
                     < ><img src={track.album.images[0].url} alt="" width={45} className=' rounded-sm pe-3 py-2' /></>
                     <div>
                     <p className='text-white pe-6 hover:underline'>{track.album.name.length > 35 ? track.album.name.slice(0, 35) + "..." : track.album.name + ' ' }</p>
-                    <a className='text-[14px] text-gray-400 hover:underline'>{track.album.artists.map(artist => artist.name).join(", ")}</a>
+                    <a href='' className='text-[14px] text-gray-400 hover:underline'>{track.album.artists.map(artist => artist.name).join(", ")}</a>
 
                     </div>
                     </div>

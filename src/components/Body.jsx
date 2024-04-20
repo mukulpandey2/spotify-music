@@ -56,7 +56,7 @@ const Body = ({ spotify }) => {
       <div className="banner flex items-center justify-center mb-4 py-5 bg-gray-600 my-[60px]">
 
         <div className="banner-img me-6">
-          <img src={discover_weekly?.images[0].url} alt="" width={200} />
+          <img src={discover_weekly?.images[0].url} alt={discover_weekly?.name} width={200} />
         </div>
         <div className="banner-text">
           <strong>Playlist</strong>
@@ -64,7 +64,7 @@ const Body = ({ spotify }) => {
           <h1>{discover_weekly?.description}</h1>
           <div className='flex items-center gap-1'>
             <FaSpotify className='text-green-500' size={22} />
-            <p>  Made for  <a href="" className='font-bold hover:underline'> {user?.display_name} </a>30 songs, about 1 hr 30 min</p>
+            <p>  Made for  <a href=''  className='font-bold hover:underline'> {user?.display_name} </a>30 songs, about 1 hr 30 min</p>
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 import { useStateValue } from '../StateProvider';
 
 const Header = () => {
-    const [ {user} , dispatch] = useStateValue();
+    const [ {user}] = useStateValue();
   return (
         <div className=' relative'>
             <div className='fixed top-0 right-0 left-[20vw] px-4 pt-2 flex items-center justify-between'>
