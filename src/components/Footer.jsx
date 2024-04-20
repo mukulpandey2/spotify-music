@@ -79,7 +79,7 @@ const Footer = ({spotify}) => {
         <div className="footer-left flex items-center">
         <div className="player-img ">
         <img src={item?.album.images[0].url} alt={item?.name}  width={60} height={50}/> 
-          
+        
          </div>
          {item ? (  
             <div className="songDesc text-[14px] ps-3">
