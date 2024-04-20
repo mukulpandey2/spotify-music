@@ -13,7 +13,7 @@ function SongRow( {track , index, playSong} ) {
                 <td className='px-3'>{index + 1}</td>
                 <td>
                     <div className='flex items-center '>
-                    <td className='pe-3 py-2'><img src={track.album.images[0].url} alt="" width={45} className=' rounded-sm ' /></td>
+                    < ><img src={track.album.images[0].url} alt="" width={45} className=' rounded-sm pe-3 py-2' /></>
                     <div>
                     <p className='text-white pe-6 hover:underline'>{track.album.name.length > 35 ? track.album.name.slice(0, 35) + "..." : track.album.name + ' ' }</p>
                     <a className='text-[14px] text-gray-400 hover:underline'>{track.album.artists.map(artist => artist.name).join(", ")}</a>
